@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="matDialog" title="{i18n>materialTitle}">
+		<content>
+			<!-- 物料的搜索帮助 -->
+			<Panel expandable="false" expanded="true">
+				<SearchField liveChange="onMatF4Search" width="100%" id="Product-ProductGroupName" />
+				<Table id="ZMATERIAL_TTable" items="{/matF4Set}" growing="true" growingThreshold="100" mode='MultiSelect'>
+					<columns>
+						<Column>
+							<Text text="{i18n>material}" />
+						</Column>
+						<Column minScreenWidth="Tablet">
+							<Text text="{i18n>materialDesc}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{Product}" />
+								<Text text="{ProductDescription}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</Panel>
+		</content>
+		<buttons>
+			<!-- 确认按钮 -->
+			<Button type="Emphasized" text="Confirm"
+				press="onConfirmAction" visible="true" />
+			<!-- 取消按钮 -->
+			<Button type="Emphasized" text="Cancel"
+				press="onCancelAction" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

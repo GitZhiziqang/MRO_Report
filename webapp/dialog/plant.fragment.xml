@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="documentDialog" title="{i18n>plantTitle}">
+		<content>
+			<Panel expandable="false" expanded="true">
+				<SearchField liveChange="onPlantF4Search" width="100%" id="Plant-PlantName" />
+				<Table id="ZPlant_TTable" items="{/plantF4Set}" growing="true" growingThreshold="100" mode='MultiSelect'>
+					<columns>
+						<Column>
+							<Text text="{i18n>plant}" />
+						</Column>
+							<Column>
+							<Text text="{i18n>plantDesc}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{Plant}" />
+								<Text text="{PlantName}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</Panel>
+		</content>
+		<buttons>
+			<!-- 确认按钮 -->
+			<Button type="Emphasized" text="Confirm"
+				press="onConfirmActionPlant" visible="true" />
+			<!-- 取消按钮 -->
+			<Button type="Emphasized" text="Cancel"
+				press="onCancelActionPlant" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="venDialog" title="{i18n>storageLocationTitle}">
+		<content>
+
+			<!-- 供应商的搜索帮助 -->
+			<Panel expandable="false" expanded="true">
+				<SearchField liveChange="onSLF4Search" width="100%" id="StorageLocation-StorageLocationName" />
+				<Table id="ZSTORAGELOCATION_TTable" items="{/storageLocationF4Set}" growing="true" growingThreshold="100" mode='MultiSelect'>
+					<columns>
+						<Column>
+							<Text text="{i18n>storageLocation}" />
+						</Column>
+						<Column minScreenWidth="Tablet">
+							<Text text="{i18n>storageLocationName}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{StorageLocation}" />
+								<Text text="{StorageLocationName}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</Panel>
+		</content>
+		<buttons>
+			<!-- 确认按钮 -->
+			<Button type="Emphasized" text="Confirm"
+				press="onConfirmActionSL" visible="true" />
+			<!-- 取消按钮 -->
+			<Button type="Emphasized" text="Cancel"
+				press="onCancelActionSL" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

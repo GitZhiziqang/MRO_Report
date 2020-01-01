@@ -1,0 +1,221 @@
+<mvc:View controllerName="cie.mro_report.controller.MROReport" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" height="100%" xmlns:t="sap.ui.table">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Panel>
+							<VBox>
+								<HBox>
+									<Text id="clipBoard" text=""/>
+									<VBox width="8%" justifyContent="Center">
+										<Text text="{i18n>materialNo}：" textAlign="End" width="100%"/>
+									</VBox>
+									<VBox width="17%">
+										<MultiInput id="materialNo" type="Text" placeholder="" showSuggestion="true" showValueHelp="true" 
+										            valueHelpRequest="openMaterial">
+										</MultiInput>			
+									</VBox>
+									<VBox width="10%" justifyContent="Center">
+										<Text text="{i18n>plant}：" textAlign="End" width="100%"/>
+									</VBox>
+									<VBox width="17%">
+										<MultiInput id="plant" type="Text" placeholder="" showSuggestion="true" showValueHelp="true" 
+										            valueHelpRequest="openPlant">
+										</MultiInput>			
+									</VBox>
+									<VBox width="10%" justifyContent="Center">
+										<Text text="{i18n>storageLocation}：" textAlign="End" width="100%"/>
+									</VBox>
+									<VBox width="17%">
+										<MultiInput id="storageLocation" type="Text" placeholder="" showSuggestion="true" showValueHelp="true" 
+										            valueHelpRequest="openStorageLocation">
+										</MultiInput>		
+									</VBox>
+									<VBox width="6%" justifyContent="Center"/>
+									<HBox width="15%">
+										<Button text="{i18n>search}" press="onSearch" />
+									</HBox>
+								</HBox>
+								<HBox>
+									<Text text=""/>
+									<VBox width="8%" justifyContent="Center">
+										<Text text="{i18n>storageBin}：" textAlign="End" width="100%"/>
+									</VBox>
+									<VBox width="17%">
+										<MultiInput id="storageBin" type="Text" placeholder="" showSuggestion="true" showValueHelp="true" 
+										            valueHelpRequest="openStorageBin">
+										</MultiInput>			
+									</VBox>
+									<VBox width="10%" justifyContent="Center">
+										<Text text="{i18n>materialType}：" textAlign="End" width="100%"/>
+									</VBox>
+									<VBox width="17%">
+										<MultiInput id="materialType" type="Text" placeholder="" showSuggestion="true" showValueHelp="true" 
+										            valueHelpRequest="openMaterialType">
+										</MultiInput>			
+									</VBox>
+								</HBox>
+							</VBox>
+						</Panel>		
+						<VBox class="tableBox">
+							<t:Table id="table" rows="{
+								path: '/MRO_ListSet'
+								
+							}"
+							             columnSelect=".onColumn"
+										 visibleRowCount="10"
+										 firstVisibleRowChanged="onScroll"
+								         >
+											<t:toolbar>
+							<OverflowToolbar>
+								<content>
+									<ToolbarSpacer/>									
+									<Button	icon="./images/download.png" press="onExportExcel" />
+								</content>
+							</OverflowToolbar>
+							</t:toolbar>	
+								<t:columns>
+									<t:Column width="15rem" showFilterMenuEntry="true" filterProperty="ZMATERIAL">
+										<HBox>
+											<Label text="{i18n>materialNo_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{Material}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column hAlign="End" width="6rem">
+										<HBox>
+											<Label text="{i18n>materialDesc_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'ProductDescription'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column hAlign="End" width="9rem" sortProperty="ProductType">
+										<HBox>
+											<Label text="{i18n>materialType_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'ProductType'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column width="10rem" sortProperty="MaterialTypeName">
+										<HBox>
+											<Label text="{i18n>materialTypeName_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'MaterialTypeName'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column width="10rem">
+										<HBox>
+											<Label text="{i18n>materialGroup_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'ProductGroup'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column width="10rem" sortProperty="ProductGroupName">
+										<HBox>
+											<Label text="{i18n>materialGroupName_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{ProductGroupName}" />
+										</t:template>
+									</t:Column>	
+			            			<t:Column width="8rem" showFilterMenuEntry="true" filterProperty="Plant">
+										<HBox>
+											<Label text="{i18n>plant_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{Plant}" wrapping="false" tooltip="{Plant}" />
+										</t:template>
+									</t:Column>
+									<t:Column width="8rem" filterProperty="StorageLocation">
+										<HBox>
+											<Label text="{i18n>storageLocation_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{StorageLocation}" wrapping="false" tooltip="{StorageLocation}" />
+										</t:template>
+									</t:Column>
+									<t:Column width="10rem">
+										<HBox>
+											<Label text="{i18n>storageBIN_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'WarehouseStorageBin'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column width="11rem" showFilterMenuEntry="true" filterProperty="Batch">
+										<HBox>
+											<Label text="{i18n>batchNo_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{Batch}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="10rem">
+										<HBox>
+											<Label text="{i18n>quantity_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{
+												path: 'MatlWrhsStkQtyInMatlBaseUni'
+											}" wrapping="false"/>
+										</t:template>
+									</t:Column>	
+									<t:Column width="11rem" showFilterMenuEntry="true" filterProperty="MaterialBaseUnit">
+										<HBox>
+											<Label text="{i18n>unit_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{MaterialBaseUnit}" wrapping="false" tooltip="{MaterialBaseUnit}"  />
+										</t:template>
+									</t:Column>
+									<t:Column width="15rem" showFilterMenuEntry="true" filterProperty="SafetyStockQuantity">
+										<HBox>
+											<Label text="{i18n>safetyStock_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{SafetyStockQuantity}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="15rem" showFilterMenuEntry="true" filterProperty="Priority">
+										<HBox>
+											<Label text="{i18n>materialClassification_t}	"/>
+										</HBox>
+										<t:template>
+											<Text text="{ABCIndicator}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="15rem" showFilterMenuEntry="true" filterProperty="Priority">
+										<HBox>
+											<Label text="{i18n>priority_t}"/>
+										</HBox>
+										<t:template>
+											<Text text="{Priority}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+								</t:columns>	
+									<t:noData>
+										<Text text="{i18n>noData}" class="uiTableNoData"/>
+									</t:noData>												
+							</t:Table>
+						</VBox>						
+					</content>
+				</Page>
+			</pages>
+		</App>
+</mvc:View>
